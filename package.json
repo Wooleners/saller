@@ -1,0 +1,21 @@
+{
+  "name": "saller-init",
+  "version": "0.0.1",
+  "description": "saller boilerplate generator.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooleners/saller-init"
+  },
+  "homepage": "https://github.com/wooleners/saller-init",
+  "mai": "wooleners@gmail.com",
+  "license": "MIT",
+  "bin": {
+    "saller-init": "./bin/saller-init"
+  },
+  "scripts": {},
+  "dependencies": {
+    "through2": "~2.0.0",
+    "vinyl-fs": "~2.2.1",
+    "which": "~1.2.0"
+  }
+}
