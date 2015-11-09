@@ -6,7 +6,7 @@ Saller boilerplate generator.
 ## Install
 
 ```bash
-$ npm i saller-init --save
+$ npm i saller-init -g --save
 ```
 
 ## Usage
