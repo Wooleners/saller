@@ -20,6 +20,7 @@ vfs.src('**/*', {cwd: cwd, cwdbase: true, dot: true})
   .pipe(template(dest))
   .pipe(vfs.dest(dest))
   .on('end', function() {
+    console.log(cwd);
     fs.renameSync(path.join(dest,'gitignore'),path.join(dest,'.gitignore'));
     require('../lib/install');
   })
