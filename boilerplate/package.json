@@ -12,6 +12,7 @@
   "dependencies": {
     "autoprefixer-loader": "~2.0.0",
     "ip": "^1.0.2",
+    "alt": "^0.17.8",
     "babel": "^5.4.7",
     "babel-core": "^5.4.7",
     "babel-eslint": "^3.1.23",
@@ -25,6 +26,7 @@
     "extract-text-webpack-plugin": "^0.8.1",
     "json-loader": "^0.5.1",
     "jsx-loader": "^0.13.2",
+    "colors": "1.1.2",
     "less": "~2.5.1",
     "less-loader": "^2.2.0",
     "node-libs-browser": "^0.5.2",
@@ -32,6 +34,8 @@
     "react-hot-loader": "^1.2.7",
     "react-router": "^0.13.3",
     "webpack": "^1.9.10",
-    "webpack-dev-server": "^1.9.0"
+    "webpack-dev-server": "^1.9.0",
+    "webpack-dev-middleware": "^1.2.0",
+    "webpack-hot-middleware": "^2.2.0"
   }
 }
