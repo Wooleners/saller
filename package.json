@@ -1,10 +1,10 @@
 {
   "name": "saller-init",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "saller boilerplate generator.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wooleners/saller-init"
+    "url": "git+https://github.com/wooleners/saller-init.git"
   },
   "homepage": "https://github.com/wooleners/saller-init",
   "mai": "wooleners@gmail.com",
@@ -12,10 +12,18 @@
   "bin": {
     "saller-init": "./bin/saller-init"
   },
-  "scripts": {},
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
     "through2": "~2.0.0",
     "vinyl-fs": "~2.2.1",
     "which": "~1.2.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/wooleners/saller-init/issues"
+  },
+  "main": "server.js",
+  "devDependencies": {},
+  "author": "wooleners"
 }

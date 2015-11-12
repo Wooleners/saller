@@ -4,13 +4,14 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack && node server.js"
   },
   "author": "wooleners",
   "license": "ISC",
   "dependencies": {
-    "alt": "^0.17.1",
     "autoprefixer-loader": "~2.0.0",
+    "ip": "^1.0.2",
     "babel": "^5.4.7",
     "babel-core": "^5.4.7",
     "babel-eslint": "^3.1.23",
@@ -18,6 +19,7 @@
     "babel-plugin-object-assign": "^1.2.0",
     "css-animation": "~1.0.3",
     "css-loader": "^0.14.1",
+    "superagent": "^1.4.0",
     "eslint": "^0.24.1",
     "eslint-plugin-react": "~2.5.0",
     "extract-text-webpack-plugin": "^0.8.1",
@@ -29,8 +31,6 @@
     "react": "^0.13.3",
     "react-hot-loader": "^1.2.7",
     "react-router": "^0.13.3",
-    "reqwest": "^2.0.1",
-    "superagent": "^1.3.0",
     "webpack": "^1.9.10",
     "webpack-dev-server": "^1.9.0"
   }
