@@ -2,7 +2,7 @@ import alt from '../alt';
 import React from 'react';
 import indexActions from '../actions/indexActions';
 
-class testStores {
+class indexStores {
   constructor() {
     this.bindActions(indexActions);
   }

@@ -5,7 +5,7 @@ class app extends React.Component {
   render() {
     return (
       <div>
-        <h3>hello saller world!!!</h3>
+        <h3 style={{"color": "green", "textAlign": "center"}}>Welcome Saller World!!!</h3>
         <RouteHandler />
       </div>
     );
