@@ -45,7 +45,7 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin('[name].css'),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
   ],
   devtool: 'source-map'
