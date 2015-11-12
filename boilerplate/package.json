@@ -1,8 +1,8 @@
 {
   "name": "saller-demo",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
-  "main": "src/app.js",
+  "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack && node server.js"
