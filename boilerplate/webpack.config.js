@@ -6,7 +6,7 @@ var ip = require('ip');
 
 module.exports = {
   entry: [
-    'webpack-dev-server/client?http://' + ip + ':3000', // WebpackDevServer host and port
+    'webpack-dev-server/client?http://' + ip.address() + ':3000', // WebpackDevServer host and port
     'webpack/hot/only-dev-server',
     'webpack-hot-middleware/client',
     './src/index.js' // Your appʼs entry point
