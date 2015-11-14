@@ -31,8 +31,6 @@ function template(dest) {
     if (!file.stat.isFile()) {
       return cb();
     }
-
-    console.log('Write %s', simplifyFilename(join(dest, basename(file.path))));
     this.push(file);
     cb();
   });
