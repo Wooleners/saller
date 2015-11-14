@@ -3,17 +3,19 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require('path');
 var pkg = require('./package');
 var ip = require('ip');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: [
     'webpack-dev-server/client?http://' + ip.address() + ':3000', // WebpackDevServer host and port
     'webpack/hot/only-dev-server',
     'webpack-hot-middleware/client',
-    './src/index.js' // Your appʼs entry point
+    './src/index.js', // Your appʼs entry point
+    './style/index.less'
   ],
   output: {
     path: path.join(process.cwd(), 'dist'),
-    filename: 'bundle.js',
+    filename: '[hash:4]/app.[hash].js',
     publicPath: '/dist/'
   },
   module: {
@@ -43,10 +45,14 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   plugins: [
-    new ExtractTextPlugin('[name].css'),
+    new HtmlWebpackPlugin({
+      filename: "index.html",
+      template: "src/index.html"
+    }),
+    new ExtractTextPlugin('[hash:4]/app.[hash].css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurenceOrderPlugin()
   ],
   devtool: 'source-map'
 };

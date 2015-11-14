@@ -5,6 +5,7 @@ var ip = require('ip');
 var colors = require('colors');
 
 new WebpackDevServer(webpack(config), {
+  contentBase: 'dist/',
   publicPath: config.output.publicPath,
   hot: true,
   noInfo: false,
