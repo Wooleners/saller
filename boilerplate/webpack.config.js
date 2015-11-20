@@ -11,7 +11,7 @@ module.exports = {
     'webpack/hot/only-dev-server',
     'webpack-hot-middleware/client',
     './src/index.js', // Your appʼs entry point
-    './style/index.less'
+    // './style/index.less'    Your app's css point
   ],
   output: {
     path: path.join(process.cwd(), 'dist'),
