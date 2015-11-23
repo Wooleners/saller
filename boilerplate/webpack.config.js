@@ -4,17 +4,19 @@ var path = require('path');
 var pkg = require('./package');
 var ip = require('ip');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ROOT_PATH = path.resolve(__dirname);
+var APP_PATH = path.resolve(ROOT_PATH, 'src');
+var BUILD_PATH = path.resolve(ROOT_PATH, 'build');
 
 module.exports = {
   entry: [
     'webpack-dev-server/client?http://' + ip.address() + ':3000', // WebpackDevServer host and port
     'webpack/hot/only-dev-server',
     'webpack-hot-middleware/client',
-    './src/index.js', // Your appʼs entry point
-    // './style/index.less'    Your app's css point
+    APP_PATH
   ],
   output: {
-    path: path.join(process.cwd(), 'dist'),
+    path: BUILD_PATH,
     filename: '[hash:4]/app.[hash].js',
     publicPath: '/dist/'
   },
@@ -40,6 +42,12 @@ module.exports = {
       test: /\.json$/,
       loader: 'json-loader'
     }]
+  },
+  devServer: {
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    progress: true,
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
