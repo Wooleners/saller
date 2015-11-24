@@ -1,12 +1,13 @@
-var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var path = require('path');
-var pkg = require('./package');
-var ip = require('ip');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ROOT_PATH = path.resolve(__dirname);
-var APP_PATH = path.resolve(ROOT_PATH, 'src');
-var BUILD_PATH = path.resolve(ROOT_PATH, 'build');
+var webpack = require('webpack'),
+    ExtractTextPlugin = require("extract-text-webpack-plugin"),
+    path = require('path'),
+    pkg = require('./package'),
+    ip = require('ip'),
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    ROOT_PATH = path.resolve(__dirname),
+    APP_PATH = path.resolve(ROOT_PATH, 'src'),
+    BUILD_PATH = path.resolve(ROOT_PATH, 'build'),
+    TEMP_PATH = path.resolve(APP_PATH, 'assets/template');
 
 module.exports = {
   entry: [
@@ -55,7 +56,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: "index.html",
-      template: "src/index.html"
+      template: TEMP_PATH
     }),
     new ExtractTextPlugin('[hash:4]/app.[hash].css'),
     new webpack.HotModuleReplacementPlugin(),
