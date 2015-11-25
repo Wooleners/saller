@@ -18,7 +18,7 @@ module.exports = {
   ],
   output: {
     path: BUILD_PATH,
-    filename: '[hash:4]/app.[hash].js',
+    filename: 'app.[hash:8].js',
     publicPath: '/dist/'
   },
   module: {
@@ -56,9 +56,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: "index.html",
-      template: TEMP_PATH
+      template: "src/assets/template/index.html"
     }),
-    new ExtractTextPlugin('[hash:4]/app.[hash].css'),
+    new ExtractTextPlugin('app.[hash:8].css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin()
