@@ -6,8 +6,7 @@ var webpack = require('webpack'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     ROOT_PATH = path.resolve(__dirname),
     APP_PATH = path.resolve(ROOT_PATH, 'src'),
-    BUILD_PATH = path.resolve(ROOT_PATH, 'build'),
-    TEMP_PATH = path.resolve(APP_PATH, 'assets/template');
+    BUILD_PATH = path.resolve(ROOT_PATH, 'build');
 
 module.exports = {
   entry: [
@@ -56,7 +55,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: "index.html",
-      template: "src/assets/template/index.html"
+      template: "src/index.html"
     }),
     new ExtractTextPlugin('app.[hash:8].css'),
     new webpack.HotModuleReplacementPlugin(),
