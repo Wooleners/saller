@@ -1,24 +1,23 @@
 var webpack = require('webpack'),
-    ExtractTextPlugin = require("extract-text-webpack-plugin"),
-    path = require('path'),
-    pkg = require('./package'),
-    ip = require('ip'),
-    HtmlWebpackPlugin = require('html-webpack-plugin'),
-    ROOT_PATH = path.resolve(__dirname),
-    APP_PATH = path.resolve(ROOT_PATH, 'src'),
-    BUILD_PATH = path.resolve(ROOT_PATH, 'build');
+  ExtractTextPlugin = require("extract-text-webpack-plugin"),
+  path = require('path'),
+  pkg = require('./package'),
+  ip = require('ip'),
+  HtmlWebpackPlugin = require('html-webpack-plugin'),
+  ROOT_PATH = path.resolve(__dirname),
+  APP_PATH = path.resolve(ROOT_PATH, 'src'),
+  BUILD_PATH = path.resolve(ROOT_PATH, 'build'),
+  DEPLOY_PATH = path.resolve(ROOT_PATH, 'dist');
 
 module.exports = {
   entry: [
-    'webpack-dev-server/client?http://' + ip.address() + ':3000', // WebpackDevServer host and port
-    'webpack/hot/only-dev-server',
-    'webpack-hot-middleware/client',
+    'webpack-hot-middleware/client?reload=true',
     APP_PATH
   ],
   output: {
     path: BUILD_PATH,
-    filename: 'app.[hash:8].js',
-    publicPath: '/dist/'
+    filename: '[hash:4]/app.[hash:8].js',
+    publicPath: '/'
   },
   module: {
     loaders: [{
@@ -29,25 +28,19 @@ module.exports = {
     }, {
       test: /\.css$/,
       loader: ExtractTextPlugin.extract(
-        'css?sourceMa&-minimize!' + 'autoprefixer-loader'
+        'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]'
       )
     }, {
       test: /\.jsx?$/,
       loaders: ['react-hot', 'jsx?harmony', 'babel'],
       exclude: /node_modules/
     }, {
-      test: /\.(png|jpg)$/,
-      loader: 'url-loader?limit=8192'
+      test: /\.(png|jpg|woff)$/,
+      loader: 'url-loader?limit=10000'
     }, {
       test: /\.json$/,
       loader: 'json-loader'
     }]
-  },
-  devServer: {
-    historyApiFallback: true,
-    hot: true,
-    inline: true,
-    progress: true,
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
@@ -55,12 +48,16 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: "index.html",
-      template: "src/index.html"
+      inject: 'body',
+      template: "src/index.tpl.html"
     }),
     new ExtractTextPlugin('app.[hash:8].css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.OccurenceOrderPlugin()
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+    })
   ],
-  devtool: 'source-map'
+  devtool: 'eval-source-map'
 };
