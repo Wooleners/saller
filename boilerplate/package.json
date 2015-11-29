@@ -6,12 +6,13 @@
   "scripts": {
     "start": "babel-node server",
     "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build",
-    "deploy": "NODE_ENV=production webpack -p"
+    "deploy": "rm -rf dist && NODE_ENV=production webpack --config ./webpack.deploy.js --progress --profile --colors"
   },
   "author": "wooleners",
   "license": "ISC",
   "dependencies": {
     "alt": "^0.17.8",
+    "autoprefixer": "^6.1.2",
     "autoprefixer-loader": "~2.0.0",
     "babel": "^5.4.7",
     "babel-core": "^5.4.7",
@@ -35,6 +36,7 @@
     "react-hot-loader": "^1.2.7",
     "react-router": "^0.13.3",
     "reqwest": "^2.0.5",
+    "stats-webpack-plugin": "^0.2.2",
     "superagent": "^1.4.0",
     "webpack": "^1.9.10",
     "webpack-dev-middleware": "^1.2.0",

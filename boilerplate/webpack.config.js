@@ -5,9 +5,7 @@ var webpack = require('webpack'),
   ip = require('ip'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   ROOT_PATH = path.resolve(__dirname),
-  APP_PATH = path.resolve(ROOT_PATH, 'src'),
-  BUILD_PATH = path.resolve(ROOT_PATH, 'build'),
-  DEPLOY_PATH = path.resolve(ROOT_PATH, 'dist');
+  APP_PATH = path.resolve(ROOT_PATH, 'src');
 
 module.exports = {
   entry: [
@@ -15,8 +13,8 @@ module.exports = {
     APP_PATH
   ],
   output: {
-    path: BUILD_PATH,
-    filename: '[hash:4]/app.[hash:8].js',
+    path: path.join(__dirname, '/build/'),
+    filename: 'build/app.[hash:8].js',
     publicPath: '/'
   },
   module: {
@@ -51,7 +49,7 @@ module.exports = {
       inject: 'body',
       template: "src/index.tpl.html"
     }),
-    new ExtractTextPlugin('app.[hash:8].css'),
+    new ExtractTextPlugin('build/app.[hash:8].css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
