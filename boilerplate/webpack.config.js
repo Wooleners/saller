@@ -33,7 +33,7 @@ module.exports = {
       loaders: ['react-hot', 'jsx?harmony', 'babel'],
       exclude: /node_modules/
     }, {
-      test: /\.(png|jpg|woff)$/,
+      test: /\.(png|jpg|woff|ico)$/,
       loader: 'url-loader?limit=10000'
     }, {
       test: /\.json$/,
