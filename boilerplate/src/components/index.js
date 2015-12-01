@@ -9,7 +9,7 @@ class index extends React.Component {
   }
 
   btnClick() {
-    location.href = "#test";
+    location.href = "/test";
   }
 
   render() {

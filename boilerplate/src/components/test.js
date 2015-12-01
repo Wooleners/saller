@@ -9,7 +9,7 @@ class test extends React.Component {
   }
 
   btnClick() {
-    location.href = "#index";
+    location.href = "/index";
   }
 
   render() {
