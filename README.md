@@ -15,13 +15,13 @@ $ npm i saller-init -g --save
 $ mkdir foo && cd foo
 $ saller-init
 ```
-##steup
+##Steup
 
 ```bash
 $ npm start
 ```
 
-##deploy
+##Deploy
 
 ```bash
 $ npm run deploy

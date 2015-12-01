@@ -12,9 +12,6 @@
   "bin": {
     "saller-init": "./bin/saller-init"
   },
-  "scripts": {
-    "start": "node server.js"
-  },
   "dependencies": {
     "through2": "~2.0.0",
     "vinyl-fs": "~2.2.1",
