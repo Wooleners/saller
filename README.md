@@ -9,10 +9,28 @@ Saller boilerplate generator.
 $ npm i saller-init -g --save
 ```
 
+##Feature
+
+- Modular
+    - [x] [Modular Develop]
+    - [x] [Multi-version Release]
+- Automation
+    - [x] [Source Code Compress]
+    - [x] [Source Code Verify]
+- Local Debugging
+    - [x] [Local Server]
+    - [x] [Files watch]
+    - [x] [Automatically Refresh]
+- Others
+    - [x] [Resource Bulit-in]
+    - [x] [Project Generator]
+- Next
+   -  [x] [.........]
+
 ## Usage
 
 ```bash
-$ mkdir foo && cd foo
+$ mkdir saller-demo && cd saller-demo
 $ saller-init
 ```
 ##Steup
