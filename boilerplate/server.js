@@ -28,13 +28,24 @@ if (isDeveloping) {
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
   app.get('*', function response(req, res) {
-    res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
+    //if no favicon
+    if (req.url === '/favicon.ico') {
+      res.writeHead(200, {'Content-Type': 'images/x-icon'});
+      res.end();
+      return;
+    }
+    res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'build/index.html')));
     res.end();
   });
 } else {
-  app.use(express.static(__dirname + '/dist'));
+  app.use(express.static(__dirname + '/build'));
   app.get('*', function response(req, res) {
-    res.sendFile(path.join(__dirname, 'dist/index.html'));
+    if (req.url === '/favicon.ico') {
+      res.writeHead(200, {'Content-Type': 'images/x-icon'});
+      res.end();
+      return;
+    }
+    res.sendFile(path.join(__dirname, 'build/index.html'));
   });
 }
 

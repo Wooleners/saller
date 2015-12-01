@@ -33,8 +33,8 @@ module.exports = {
       loaders: ['react-hot', 'jsx?harmony', 'babel'],
       exclude: /node_modules/
     }, {
-      test: /\.(png|jpg|woff|ico)$/,
-      loader: 'url-loader?limit=10000'
+      test: /\.(jp?g|gif|png|woff|ico)$/,
+      loader: 'url-loader?limit=10000&name=[name].[hash:8].[ext]'
     }, {
       test: /\.json$/,
       loader: 'json-loader'

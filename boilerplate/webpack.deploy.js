@@ -5,7 +5,6 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var StatsPlugin = require('stats-webpack-plugin');
-var CompressionPlugin= require('compression-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -13,7 +12,9 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, '/dist/'),
-    filename: 'app.[hash:8].min.js'
+    filename: 'app.[hash:8].min.js',
+    //cdn host
+    publicPath: 'script2.pingan.com/'
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -53,6 +54,9 @@ module.exports = {
     }, {
       test: /\.css$/,
       loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[name]---[local]---[hash:base64:5]!postcss')
+    }, {
+      test: /\.(jp?g|gif|png|woff|ico)$/,
+      loader: 'url-loader?limit=10000&name=[name].[hash:8].[ext]'
     }]
   },
   postcss: [
