@@ -1,7 +1,6 @@
-# saller-init[![Build Status](https://travis-ci.org/Wooleners/saller-init.svg?branch=master)](https://travis-ci.org/Wooleners/saller-init)
-Saller boilerplate generator.
+# saller-init  [![Build Status](https://travis-ci.org/Wooleners/saller-init.svg?branch=master)](https://travis-ci.org/Wooleners/saller-init)
+saller boilerplate generator.
 
-----
 
 ## Install
 
@@ -12,20 +11,20 @@ $ npm i saller-init -g --save
 ##Feature
 
 - Modular
-    - [x] [Modular Develop]
-    - [x] [Multi-version Release]
+    -  Modular Develop
+    -  Multi-version Release
 - Automation
-    - [x] [Source Code Compress]
-    - [x] [Source Code Verify]
+    -  Source Code Compress
+    -  Source Code Verify
 - Local Debugging
-    - [x] [Local Server]
-    - [x] [Files watch]
-    - [x] [Automatically Refresh]
+    -  Local Server
+    -  Files watch
+    -  Automatically Refresh
 - Others
-    - [x] [Resource Bulit-in]
-    - [x] [Project Generator]
+    -  Resource Bulit-in
+    -  Project Generator
 - Next
-   -  [x] [.........]
+   -   .........
 
 ## Usage
 
