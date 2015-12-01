@@ -35,13 +35,6 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    }),
-    new CompressionPlugin({
-      asset: "{file}.zip",
-      algorithm: "gzip",
-      regExp: /\.js$|\.html$\.css$/,
-      threshold: 10240,
-      minRatio: 0.8
     })
   ],
   module: {
