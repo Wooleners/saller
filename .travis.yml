@@ -7,4 +7,4 @@ notifications:
   - wooleners@gmail.com
 
 node_js:
-- stable
+- 4.0.0
