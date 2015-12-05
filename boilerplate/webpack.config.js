@@ -20,24 +20,20 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.less$/,
-      loader: ExtractTextPlugin.extract(
-        'css?sourceMap&-minimize!' + 'autoprefixer-loader!' + 'less?sourceMap'
-      )
-    }, {
-      test: /\.css$/,
-      loader: ExtractTextPlugin.extract(
-        'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]'
-      )
+      loader: ['style', 'css?root='+__dirname, 'resolve-url', 'less']
     }, {
       test: /\.jsx?$/,
       loaders: ['react-hot', 'jsx?harmony', 'babel'],
       exclude: /node_modules/
     }, {
-      test: /\.(jp?g|gif|png|woff|ico)$/,
-      loader: 'url-loader?limit=10000&name=[name].[hash:8].[ext]'
+      test: /\.(jpe?g|gif|png|ico)$/,
+      loader: 'url?limit=1024&name=images/[name].[hash:4].[ext]'
+    }, {
+      test: /\.(woff2?|otf|eot|svg|ttf)$/i,
+      loader: 'url?name=fonts/[name].[hash:4].[ext]'
     }, {
       test: /\.json$/,
-      loader: 'json-loader'
+      loader: 'json'
     }]
   },
   resolve: {
@@ -56,6 +52,5 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
     })
-  ],
-  devtool: 'eval-source-map'
+  ]
 };
