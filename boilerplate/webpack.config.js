@@ -9,27 +9,28 @@ var webpack = require('webpack'),
 
 module.exports = {
   entry: [
-    'webpack-hot-middleware/client?reload=true',
+    'webpack-hot-middleware/client',
     APP_PATH
   ],
   output: {
     path: path.join(__dirname, '/build/'),
-    filename: 'build/app.[hash:8].js',
+    filename: 'build/app.[hash:4].js',
     publicPath: '/'
   },
   module: {
     loaders: [{
       test: /\.less$/,
-      loader: ['style', 'css?root='+__dirname, 'resolve-url', 'less']
-    }, {
+      loader: 'style!css!postcss!less'
+    },
+    {
       test: /\.jsx?$/,
       loaders: ['react-hot', 'jsx?harmony', 'babel'],
       exclude: /node_modules/
     }, {
-      test: /\.(jpe?g|gif|png|ico)$/,
-      loader: 'url?limit=1024&name=images/[name].[hash:4].[ext]'
+      test: /\.(jpe?g|gif|png|ico|svg)$/,
+      loader: 'url?limit=1024&name=build/[name].[hash:4].[ext]'
     }, {
-      test: /\.(woff2?|otf|eot|svg|ttf)$/i,
+      test: /\.(woff2?|otf|eot|ttf)$/i,
       loader: 'url?name=fonts/[name].[hash:4].[ext]'
     }, {
       test: /\.json$/,
@@ -39,13 +40,19 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
+  postcss: function() {
+    return [
+      require('autoprefixer'),
+      require('precss')
+    ]
+  },
   plugins: [
     new HtmlWebpackPlugin({
       filename: "index.html",
       inject: 'body',
       template: "src/index.tpl.html"
     }),
-    new ExtractTextPlugin('build/app.[hash:8].css'),
+    new ExtractTextPlugin('build/app.[hash:4].css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
