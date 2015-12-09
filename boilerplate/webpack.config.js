@@ -20,12 +20,28 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.less$/,
-      loader: 'style!css!postcss!less'
-    },
-    {
-      test: /\.jsx?$/,
-      loaders: ['react-hot', 'jsx?harmony', 'babel'],
-      exclude: /node_modules/
+      loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!less'
+    }, {
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      loader: 'babel',
+      query: {
+        stage: 0,
+        optional: ['runtime'],
+        env: {
+          development: {
+            plugins: ['react-transform'],
+            extra: {
+              'react-transform': {
+                transforms: [{
+                  transform: 'react-transform-catch-errors',
+                  imports: ['react', 'redbox-react']
+                }]
+              }
+            }
+          }
+        }
+      }
     }, {
       test: /\.(jpe?g|gif|png|ico|svg)$/,
       loader: 'url?limit=1024&name=build/[name].[hash:4].[ext]'
@@ -38,6 +54,9 @@ module.exports = {
     }]
   },
   resolve: {
+    alias: {
+      'redux': path.join(__dirname, 'node_modules/redux')
+    },
     extensions: ['', '.js', '.jsx']
   },
   postcss: function() {
@@ -59,5 +78,6 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
     })
-  ]
+  ],
+  devtool: 'eval-source-map'
 };

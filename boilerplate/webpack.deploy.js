@@ -62,5 +62,5 @@ module.exports = {
   postcss: [
     require('autoprefixer')
   ],
-  devtool: 'soure-map'
+  devtool: 'source-map'
 };

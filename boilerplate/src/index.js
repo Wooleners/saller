@@ -1,14 +1,21 @@
 import React from 'react';
-import Router from 'react-router';
+import { render } from 'react-dom';
+import createHistory from 'history/lib/createHashHistory';
+import { Provider } from 'react-redux';
+import { Router, Redirect } from 'react-router';
+import configureStore from './store/configureStore';
 import routes from './routes';
-import styles from './styles/index.less';
+import Root from './containers/root';
+import { syncReduxAndRouter } from 'redux-simple-router';
 
-//hash mode
-// Router.run(routes, Router.HashLocation, function(Handler) {
-//   React.render(<Handler />, document.getElementById('app'));
-// });
-
-//history mode
-Router.run(routes, Router.HistoryLocation, function(Handler) {
-  React.render(<Handler />, document.getElementById('app'));
+const store = configureStore();
+const history = createHistory({
+  queryKey: false
 });
+
+syncReduxAndRouter(history, store);
+
+render(
+  <Root store={store} history={history} />,
+  document.getElementById('root')
+);
