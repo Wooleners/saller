@@ -14,7 +14,7 @@ module.exports = {
     path: path.join(__dirname, '/dist/'),
     filename: 'app.[hash:8].min.js',
     //cdn host
-    publicPath: 'script2.pingan.com/'
+    publicPath: ''
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -47,7 +47,7 @@ module.exports = {
     }, {
       test: /\.js?$/,
       exclude: /node_modules/,
-      loader: 'babel'
+      loader: ['react-hot', 'babel?optional=runtime&stage=0']
     }, {
       test: /\.json?$/,
       loader: 'json'
