@@ -24,24 +24,7 @@ module.exports = {
     }, {
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
-      loader: 'babel',
-      query: {
-        stage: 0,
-        optional: ['runtime'],
-        env: {
-          development: {
-            plugins: ['react-transform'],
-            extra: {
-              'react-transform': {
-                transforms: [{
-                  transform: 'react-transform-catch-errors',
-                  imports: ['react', 'redbox-react']
-                }]
-              }
-            }
-          }
-        }
-      }
+      loaders: ['react-hot', 'babel?optional=runtime&stage=0']
     }, {
       test: /\.(jpe?g|gif|png|ico|svg)$/,
       loader: 'url?limit=1024&name=build/[name].[hash:4].[ext]'
