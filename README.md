@@ -10,7 +10,9 @@ $ npm i saller-init -g --save
 
 ##Feature
 
-### ES6 + Webpack + React + Redux + NPM
+```bash
+ES6 + Webpack + React + Redux + NPM
+```
 
 ## Usage
 
