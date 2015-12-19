@@ -10,21 +10,7 @@ $ npm i saller-init -g --save
 
 ##Feature
 
-- Modular
-    -  Modular Develop
-    -  Multi-version Release
-- Automation
-    -  Source Code Compress
-    -  Source Code Verify
-- Local Debugging
-    -  Local Server
-    -  Files watch
-    -  Automatically Refresh
-- Others
-    -  Resource Bulit-in
-    -  Project Generator
-- Next
-   -   .........
+### ES6 + Webpack + React + Redux + NPM
 
 ## Usage
 
