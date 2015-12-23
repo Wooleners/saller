@@ -1,11 +1,12 @@
-# saller-init  [![Build Status](https://travis-ci.org/Wooleners/saller-init.svg?branch=master)](https://travis-ci.org/Wooleners/saller-init)
-saller boilerplate generator.
+# Saller  [![Build Status](https://travis-ci.org/Wooleners/saller-init.svg?branch=master)](https://travis-ci.org/Wooleners/saller-init)
+
+react webapp modular generator.
 
 
 ## Install
 
 ```bash
-$ npm i saller-init -g --save
+$ npm install saller -g
 ```
 
 ##Feature
@@ -17,8 +18,8 @@ ES6 + Webpack + React + Redux + NPM
 ## Usage
 
 ```bash
-$ mkdir saller-demo && cd saller-demo
-$ saller-init
+$ saller foo
+$ cd foo && saller install
 ```
 ##Steup
 
@@ -29,5 +30,5 @@ $ npm start
 ##Deploy
 
 ```bash
-$ npm run deploy
+$ npm deploy
 ```

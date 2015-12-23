@@ -3,7 +3,6 @@
   "main": "server.js",
   "scripts": {
     "start": "babel-node server",
-    "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build",
     "deploy": "rm -rf dist && NODE_ENV=production webpack --config ./webpack.deploy.js --progress --profile --colors"
   },
   "author": "wooleners",

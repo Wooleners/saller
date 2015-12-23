@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+
+var vfs = require('vinyl-fs');
+var fs = require('fs');
+var through = require('through2');
+var path = require('path');
+var program = require('commander');
+var chalk = require('colors');
+var join = path.join;
+var basename = path.basename;
+
+program
+    .version(require('../package.json').version)
+    .command('init <projectname>')
+    .description('Initialize the project in the <projectname>')
+    .action(function(name, command) {
+        console.log('♣ Start load project bolierplate '.cyan)
+
+        var cwd = join(__dirname, '../boilerplate');
+        var dest = path.resolve(process.cwd(), name);
+
+        vfs.src('**/*', {
+                cwd: cwd,
+                cwdbase: true,
+                dot: true,
+                dirMode: true
+            })
+            .pipe(template(dest))
+            .pipe(vfs.dest(dest))
+            .on('end', function() {
+                console.log('♣ Project bolierplate build finish'.cyan);
+                fs.renameSync(path.join(dest, 'gitignore'), path.join(dest, '.gitignore'));
+            })
+            .resume();
+
+        function template(dest) {
+            return through.obj(function(file, enc, cb) {
+                if (!file.stat.isFile()) {
+                    return cb();
+                }
+                this.push(file);
+                cb();
+            });
+        }
+    })
+
+
+
+
+program
+    .command('install')
+    .description('Install dependency')
+    .action(function() {
+        console.log('♣ Start install dependency'.cyan);
+        require('../lib/install')
+    })
+
+program.parse(process.argv);
