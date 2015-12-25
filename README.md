@@ -1,4 +1,4 @@
-# Saller  [![Build Status](https://travis-ci.org/Wooleners/saller-init.svg?branch=master)](https://travis-ci.org/Wooleners/saller-init)
+# Saller  [![Build Status](https://travis-ci.org/Wooleners/saller.svg?branch=master)](https://travis-ci.org/Wooleners/saller)
 
 react webapp modular generator.
 
