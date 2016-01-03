@@ -55,4 +55,12 @@ program
         require('../lib/install')
     })
 
+program
+    .command('start')
+    .description('Run Develop Env')
+    .action(function(){
+        console.log('♣ Run Develop Env'.cyan)
+        require('../lib/start')
+    })
+
 program.parse(process.argv);
