@@ -9,7 +9,7 @@ react webapp modular generator.
 $ npm install saller -g
 ```
 
-##Feature
+## Feature
 
 ```bash
 ES6 + Webpack + React + Redux + NPM
@@ -21,13 +21,13 @@ ES6 + Webpack + React + Redux + NPM
 $ saller foo
 $ cd foo && saller install
 ```
-##Steup
+## Steup
 
 ```bash
 $ npm start
 ```
 
-##Deploy
+## Deploy
 
 ```bash
 $ npm deploy
