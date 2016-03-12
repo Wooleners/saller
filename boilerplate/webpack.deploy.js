@@ -1,66 +1,125 @@
-'use strict';
-
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var StatsPlugin = require('stats-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var node_modules_dir = __dirname + '/node_modules';
 
-module.exports = {
-  entry: [
-    path.join(__dirname, 'src/index.js')
-  ],
-  output: {
-    path: path.join(__dirname, '/dist/'),
-    filename: 'app.[hash:8].min.js',
-    //cdn host
-    publicPath: ''
-  },
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'src/index.tpl.html',
-      inject: 'body',
-      filename: 'index.html'
-    }),
-    new ExtractTextPlugin('app.[hash:8].min.css'),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false,
-        screw_ie8: true
-      }
-    }),
-    new StatsPlugin('webpack.stats.json', {
-      source: false,
-      modules: false
-    }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    })
-  ],
-  module: {
-    loaders: [{
-      test: /\.less$/,
-      loader: ExtractTextPlugin.extract(
-        'css?sourceMap&-minimize!' + 'autoprefixer-loader!' + 'less?sourceMap'
-      )
-    }, {
-      test: /\.js?$/,
-      exclude: /node_modules/,
-      loader: ['react-hot', 'babel?optional=runtime&stage=0']
-    }, {
-      test: /\.json?$/,
-      loader: 'json'
-    }, {
-      test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[name]---[local]---[hash:base64:5]!postcss')
-    }, {
-      test: /\.(jp?g|gif|png|woff|ico)$/,
-      loader: 'url-loader?limit=10000&name=[name].[hash:8].[ext]'
-    }]
-  },
-  postcss: [
-    require('autoprefixer')
-  ],
-  devtool: 'source-map'
+var config = {
+	cache: true,
+	entry: {
+		app: path.resolve(__dirname, 'src/index.js'),
+		shared: [
+			'react',
+			'react-router',
+			'react-redux',
+			'redux'
+		]
+	},
+	output: {
+		path: path.join(__dirname, '/dist/'),
+		filename: 'app.js',
+		chunkFilename: '[id].js',
+		//cdn host
+		publicPath: ''
+	},
+	resolve: {
+    alias: {
+      'react': path.resolve(node_modules_dir, 'react/dist/react.js'),
+      'react-dom': path.resolve(node_modules_dir, 'react-dom/dist/react-dom.js'),
+      'react-redux': path.resolve(node_modules_dir, 'react-redux/dist/react-redux.js'),
+      'react-router': path.resolve(node_modules_dir, 'react-router/lib/index.js'),
+      'redux': path.resolve(node_modules_dir, 'redux/dist/redux.js')
+    },
+		modulesDirectories: [
+			'src',
+			'node_modules',
+      'src/assets'
+		],
+		extensions: ['', '.json', '.js', '.png']
+	},
+	module: {
+    noParse: [
+      path.resolve(node_modules_dir, 'react/dist/react.js'),
+      path.resolve(node_modules_dir, 'react-dom/dist/react-dom.js'),
+      path.resolve(node_modules_dir, 'react-redux/dist/react-redux.js'),
+      path.resolve(node_modules_dir, 'react-router/lib/index.js'),
+      path.resolve(node_modules_dir, 'redux/dist/redux.js')
+    ],
+		loaders: [{
+			test: /\.less$/,
+			loader: ExtractTextPlugin.extract(
+				'css?-minimize!' + 'autoprefixer-loader!' + 'less'
+			)
+		}, {
+			test: /\.(js|jsx)?$/,
+			exclude: /node_modules/,
+			loaders: ['babel?optional=runtime&stage=0']
+		}, {
+			test: /\.json?$/,
+			loader: 'json'
+		}, {
+			test: /\.css$/,
+			loader: ExtractTextPlugin.extract('style', 'css!postcss')
+		}, {
+			test: /\.(jp?g|gif|png|woff|ico)$/,
+			loaders: ['url-loader?limit=8192&name=[name].[hash:4].[ext]', 'img?{bypassOnDebug: true, progressive:true, optimizationLevel: 3, pngquant:{quality: "65-80"}}']
+		}]
+	},
+	imagemin: {
+		gifsicle: {
+			interlaced: false
+		},
+		jpegtran: {
+			progressive: true,
+			arithmetic: false
+		},
+		optipng: {
+			optimizationLevel: 5
+		},
+		pngquant: {
+			floyd: 0.5,
+			speed: 2
+		},
+		svgo: {
+			plugins: [{
+				removeTitle: true
+			}, {
+				convertPathData: false
+			}]
+		}
+	},
+	plugins: [
+		new webpack.optimize.OccurenceOrderPlugin(),
+		new HtmlWebpackPlugin({
+			template: 'src/index.tpl.html',
+			inject: 'body',
+			filename: 'index.html'
+		}),
+		new StatsPlugin('webpack.stats.json', {
+			source: false,
+			modules: true
+		}),
+		new ExtractTextPlugin('app.css'),
+		new webpack.optimize.CommonsChunkPlugin('shared', 'shared.js'),
+		new webpack.optimize.UglifyJsPlugin({
+			sourceMap: false,
+			cache: false,
+			compressor: {
+				warnings: false,
+				screw_ie8: false
+			},
+			output: {
+				comments: false
+			}
+		}),
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+		})
+	],
+	postcss: [
+		require('autoprefixer')
+	]
 };
+
+module.exports = config;
