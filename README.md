@@ -18,8 +18,8 @@ ES6 + Webpack + React + Redux + NPM
 ## Usage
 
 ```bash
-$ saller foo
-$ cd foo && saller install
+$ saller init foo && cd foo
+$ saller install
 ```
 ## Steup
 
