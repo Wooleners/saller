@@ -24,13 +24,6 @@ var config = {
 		publicPath: ''
 	},
 	resolve: {
-    alias: {
-      'react': path.resolve(node_modules_dir, 'react/dist/react.js'),
-      'react-dom': path.resolve(node_modules_dir, 'react-dom/dist/react-dom.js'),
-      'react-redux': path.resolve(node_modules_dir, 'react-redux/dist/react-redux.js'),
-      'react-router': path.resolve(node_modules_dir, 'react-router/lib/index.js'),
-      'redux': path.resolve(node_modules_dir, 'redux/dist/redux.js')
-    },
 		modulesDirectories: [
 			'src',
 			'node_modules',
@@ -39,13 +32,6 @@ var config = {
 		extensions: ['', '.json', '.js', '.png']
 	},
 	module: {
-    noParse: [
-      path.resolve(node_modules_dir, 'react/dist/react.js'),
-      path.resolve(node_modules_dir, 'react-dom/dist/react-dom.js'),
-      path.resolve(node_modules_dir, 'react-redux/dist/react-redux.js'),
-      path.resolve(node_modules_dir, 'react-router/lib/index.js'),
-      path.resolve(node_modules_dir, 'redux/dist/redux.js')
-    ],
 		loaders: [{
 			test: /\.less$/,
 			loader: ExtractTextPlugin.extract(
